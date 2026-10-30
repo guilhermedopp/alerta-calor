@@ -1,0 +1,29 @@
+{
+  "n_amostras": 42912,
+  "n_simulacoes": 1192,
+  "mlp_parametros": 514,
+  "mlp_kb_float32": 2.01,
+  "metricas": {
+    "tabela_T_UR_agora": {
+      "MAE_dcore_C": 0.0513,
+      "MAE_suor_2h_g": 21.0537,
+      "MAE_dcore_acamado": 0.0443,
+      "MAE_dcore_repouso": 0.0628,
+      "MAE_dcore_ativo": 0.0459
+    },
+    "gbm_historico": {
+      "MAE_dcore_C": 0.036,
+      "MAE_suor_2h_g": 11.8978,
+      "MAE_dcore_acamado": 0.033,
+      "MAE_dcore_repouso": 0.0458,
+      "MAE_dcore_ativo": 0.0275
+    },
+    "mlp_historico_esp32": {
+      "MAE_dcore_C": 0.0388,
+      "MAE_suor_2h_g": 11.6232,
+      "MAE_dcore_acamado": 0.0357,
+      "MAE_dcore_repouso": 0.0477,
+      "MAE_dcore_ativo": 0.0315
+    }
+  }
+}

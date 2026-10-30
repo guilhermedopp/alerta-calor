@@ -1,0 +1,54 @@
+CAIXA DE ALERTA DE CALOR — v4b (v4 enxuta com encaixes embutidos), versão atual
+27/10/2026
+
+São as mesmas caixas v3 (76 x 72 x 40 mm) e v4 enxuta (70 x 69 x 40 mm), agora com encaixes impressos
+junto com o corpo e a tampa, desenhados a partir dos modelos 3D reais dos componentes comprados.
+O painel preto e o disco não mudaram.
+
+O QUE MUDOU
+1) Placa perfurada: 4 presilhas na tampa (haste de 1,3 mm com gancho de 0,6 mm e rampa) e 2 localizadores laterais.
+   A placa é empurrada contra a tampa e trava sozinha. Não precisa mais de parafusos M2 nem furar a placa.
+   Os apoios pegam só 1 mm da borda, longe das ilhas de cobre. Para tirar: abrir as presilhas com a unha.
+2) AHT20: trilho deslizante. A placa fica em pé no piso, à esquerda do trilho, com os sensores para a frente,
+   e desliza 15 mm para a direita até o batente. Um garfo preso na divisória segura o topo no canto direito
+   (longe da barra de pinos). Rasgo de 1,9 mm para placa de 1,6.
+   Motivo: no trilho antigo a placa precisava subir 3,5 mm para passar a aba de trás. Na v3 só entrava
+   inclinando e manobrando; na v4 não entrava (testado em todas as inclinações).
+3) Buzzer: copo de 8 mm de fundo (era 5 mm) com 3 nervuras que apertam 0,15 mm.
+4) PIR: 3 nervuras no furo da lente (aperto de 0,15 mm na capa Ø12). A aba Ø13,34 encosta atrás da parede.
+   Não dá para ter trilho atrás do PIR: a aba é maior que a placa dele e bateria em qualquer coisa ao entrar.
+   Se a lente ficar folgada na impressão, uma gota de cola quente atrás da aba resolve.
+5) LED e botão: já tinham encaixe (furo Ø5,2 no copo de luz; guia + travessa do botão). Sem mudança.
+
+ORDEM DE MONTAGEM
+ 1. Colar o painel preto e o disco na frente.
+ 2. LED: empurrar por trás no furo do copo de luz.
+ 3. Botão: encaixar na guia, pernas para trás.
+ 4. Buzzer: empurrar no copo até encostar na parede (pernas para trás, cortadas e isoladas).
+ 5. PIR: empurrar a lente pelo furo até a aba encostar.
+ 6. AHT20 (fios já soldados): pôr em pé no piso à esquerda do trilho e deslizar para a direita até o batente;
+    passar os fios pela abertura da divisória.
+ 7. Placa perfurada (com ESP32, resistores e BC337): pressionar contra a tampa até as 4 presilhas estalarem,
+    com o USB-C do ESP32 para o lado do rasgo.
+ 8. Fechar com os 4 parafusos M3.
+
+CONFERÊNCIAS FEITAS NO COMPUTADOR
+ - Nenhuma colisão entre caixa, encaixes, componentes e os 14 fios (só os apertos de propósito).
+ - Caminho de entrada de cada peça sem bater: AHT20 deslizando, PIR, buzzer e LED entrando por trás,
+   e a tampa com a placa e o ESP32 fechando.
+
+IMPRESSÃO (Tritan na GTMax3D, mesmas configurações de antes)
+ - Corpo de frente para a mesa e tampa com a face interna para cima: os encaixes imprimem sem suporte
+   (rampas de 45° no trilho do AHT20 e no garfo). Pode sair uma pequena rebarba na aba de trás do trilho do AHT20; lixe se precisar.
+ - Primeiro imprima um teste do painel. Se as nervuras apertarem demais, lixe de leve. Se ficarem folgadas, use uma gota de cola.
+
+COMPRAS
+ - Não são mais necessários: parafusos M2 x 6 e furar a placa perfurada.
+ - Continuam: 4 parafusos M3 x 10–12 autoatarraxantes e carregador 5 V USB-C.
+
+PASTAS
+ imprimir          STL já deitados para imprimir (corpo, tampa, painel e disco)
+ montagem_fusion   montagem completa com os componentes reais e os 14 fios; 40_ e 41_ são só os encaixes (para destacar)
+ imagens           vistas 3D e cortes com medidas
+ codigo            scripts (bercos.py = encaixes; caixa_v4b.py = caixa; insercao.py e colisao.py = testes)
+ video             vídeo de montagem (74 s)

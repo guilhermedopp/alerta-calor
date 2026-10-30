@@ -1,0 +1,77 @@
+ROTEIRO DO TESTE DEFINITIVO — DHT11 + PIR NO ESP32 DEVKIT
+=========================================================
+Duração: uns 3 minutos.  Código: teste_definitivo_DHT11_PIR.txt
+
+
+1. ANTES DE LIGAR
+-----------------
+[ ] ESP32 plugado na protoboard, USB desconectado.
+[ ] Ligações (coluna j, contando a partir do VIN):
+      j1  VIN  -> trilho +        j2  GND -> trilho -
+      j6  D27  -> OUT do PIR (fio roxo)
+      j7  D26  -> DATA do DHT11 (fio amarelo)
+      DHT11: VCC e GND nos trilhos + e -, pino 3 sem nada, SEM resistor
+      PIR:   VCC no +, GND no -, conferir as letras ao lado dos pinos
+[ ] PIR: jumper em H e os dois potenciômetros todo no sentido anti-horário.
+[ ] Buzzer FORA da protoboard (só volta com resistor de 100–330 Ω).
+[ ] Cúpula do PIR virada para a parede.
+
+
+2. CARREGAR
+-----------
+1) Arduino IDE: cole o código num sketch novo.
+2) Ferramentas > Placa > ESP32 Dev Module; Ferramentas > Porta > a COM do ESP.
+3) Carregar (seta ->). Abra o Monitor Serial em 115200.
+4) Aperte EN na placa para começar do zero.
+
+
+3. O QUE FAZER EM CADA ETAPA
+----------------------------
+ETAPA 1 (10 s)  DHT11 lendo     -> não faça nada.
+                Esperado: 5 leituras de temperatura e umidade, pelo menos 4 boas.
+
+ETAPA 2 (≤30 s) DHT11 no sopro  -> sopre no sensor azul por 5 s.
+                Esperado: umidade sobe 5 pontos ou mais.
+
+ETAPA 3 (≤3 min) PIR aquecendo  -> fique PARADO ou fora da frente do PIR.
+                Esperado: contagem até 60 s e depois "repouso OK".
+
+ETAPA 4 (≤90 s) PIR detectando  -> passe a mão a 30–50 cm, 3 vezes.
+                Depois de cada vez, pare até aparecer "voltou ao repouso".
+                Esperado: 3 movimentos, cada um ligado ~3 s.
+
+No fim aparece o RESUMO. Tudo APROVADO = bancada pronta para o firmware completo.
+Depois do resumo o código fica no modo bancada (estado a cada 5 s + aviso de movimento).
+
+
+4. SE FALHAR
+------------
+DHT11 leitura REPROVADO
+   - Amarelo fora da fileira 7, ou VCC/GND trocados ou fora dos trilhos.
+DHT11 sopro REPROVADO
+   - Sopre mais perto e mais tempo. Se nada muda, o sensor pode estar com defeito.
+PIR repouso REPROVADO (saída presa em 1)
+   - Potenciômetro de tempo não está no mínimo, você está na frente,
+     ou há ventilador ou sol batendo no sensor.
+PIR movimento REPROVADO
+   - Mão mais perto e mais rápida; suba um pouco a sensibilidade.
+   - Se não aparece nenhum "movimento detectado": rode o diagnóstico
+     (teste2b_pir_diagnostico.txt) para ver em qual pino o roxo está.
+Nada aparece no Monitor
+   - Velocidade diferente de 115200, ou é preciso apertar EN.
+Upload falha
+   - Tire o fio roxo, carregue e recoloque. Ou segure BOOT ao começar o upload.
+
+Observação: o primeiro PIR (o que não respondeu) deve estar com defeito. Use o que funcionou
+e marque o outro.
+
+
+5. REGISTRO (preencher)
+-----------------------
+Data: ___/___/2026    PIR usado: ( ) verde ( ) azul
+DHT11 leitura ......... ( ) aprovado ( ) reprovado   ____ °C  ____ %
+DHT11 sopro ........... ( ) aprovado ( ) reprovado   subiu ____ pontos
+PIR repouso ........... ( ) aprovado ( ) reprovado
+PIR movimento ......... ( ) aprovado ( ) reprovado   ligado ~____ s
+Alcance (opcional): até ____ m com sensibilidade em ________
+Observações: _________________________________________________

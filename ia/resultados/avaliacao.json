@@ -1,0 +1,36 @@
+{
+  "limites": {
+    "dcore_C": 0.2,
+    "suor_2h_g": 99999.0
+  },
+  "casos_de_risco_no_teste": 1188,
+  "amostras_teste": 8568,
+  "metodos": {
+    "limiar_fixo_IC_27C (firmware atual)": {
+      "sensibilidade": 0.997,
+      "precisao": 0.162,
+      "especificidade": 0.171,
+      "alertas_perdidos": 3,
+      "alarmes_falsos": 6115
+    },
+    "tabela_T_UR_agora": {
+      "sensibilidade": 0.668,
+      "precisao": 0.726,
+      "especificidade": 0.959,
+      "alertas_perdidos": 395,
+      "alarmes_falsos": 300
+    },
+    "mlp_historico_esp32": {
+      "sensibilidade": 0.793,
+      "precisao": 0.732,
+      "especificidade": 0.953,
+      "alertas_perdidos": 246,
+      "alarmes_falsos": 345
+    }
+  },
+  "casos_de_risco_por_perfil_pct": {
+    "acamado": 9.1,
+    "repouso": 14.9,
+    "ativo": 18.9
+  }
+}

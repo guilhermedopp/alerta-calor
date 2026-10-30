@@ -1,0 +1,25 @@
+# Segredos: nunca versionar
+*_PRIVADO*
+segredos.h
+secrets.h
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.pkl
+*.npz
+
+# Dados grandes ou brutos (baixar das fontes oficiais)
+analise_maceio/*INMET*.CSV
+analise_maceio/serie_diaria_clima_internacoes.csv
+ia/dados/sims.jsonl
+ia/dados/parcial.jsonl
+
+# Arduino / sistema
+build/
+*.bin
+.DS_Store
+Thumbs.db

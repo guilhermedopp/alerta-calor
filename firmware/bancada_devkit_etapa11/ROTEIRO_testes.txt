@@ -1,0 +1,105 @@
+ROTEIRO — ETAPA 11 (PÁGINA DE CONFIGURAÇÃO, ESTILO ROTEADOR)
+============================================================
+Código: etapa11_config_devkit (mesma montagem da Etapa 10: DHT11 no D26, PIR no D27)
+Pedido do prof. Edison: gravar na memória do ESP32, por uma página, a rede Wi-Fi,
+o tempo para verificar se há alguém e os outros ajustes.
+
+
+COMO FUNCIONA
+-------------
+- Tudo fica gravado na memória do ESP32 (Preferences/NVS). No ESP32, a biblioteca EEPROM
+  é emulada em cima dessa mesma memória; a Preferences é a forma recomendada.
+- A gravação sobrevive a desligar a placa e a carregar outro código pela Arduino IDE
+  (só some com "Erase All Flash" ligado em Ferramentas, ou com "Apagar configurações").
+- A página nunca mostra a senha do Wi-Fi, o token nem a senha do painel. Campo em branco = manter.
+- Usuário: admin   Senha padrão do painel: caixa1234 (troque na primeira configuração).
+- O código não precisa mais ter token nem senha: a versão sem token funciona igual,
+  só começa pela rede de configuração.
+
+Quando a placa abre a própria rede "CaixaAlerta-XXXX" (senha = senha do painel):
+   1) não há Wi-Fi gravado (primeira vez ou depois de "Apagar configurações");
+   2) o Wi-Fi gravado não conecta em 15 s ao ligar;
+   3) a conexão cai e não volta em 2 minutos (ex.: trocaram a senha do roteador);
+   4) você aperta BOOT nos 3 s depois de ligar (o LED azul pisca rápido nesse tempo).
+   Nos casos 2 e 3 a placa continua tentando o Wi-Fi a cada 60 s e desliga a rede de
+   configuração sozinha 30 s depois de conectar. No caso 4 ela fica ligada até salvar.
+   Em todos os casos o alerta local (LED e buzzer) continua funcionando.
+
+Campos da página (todos os tempos em SEGUNDOS):
+   Wi-Fi: nome (com botão "Procurar redes"), senha, rede aberta
+   Telegram: token, chat ID, nome do local
+   Limites: atenção, perigo, histerese, correção do sensor (OFFSET)
+   Presença: usar PIR, janela de presença (s), aquecimento do PIR (s)
+   Tempos: leitura, gravação no registro, lembrete de perigo, espera para baixar de nível
+   Botões "Valores de teste" (60 s / 10 s) e "Valores de uso real" (15 min, 5 min, 30 min, 10 min)
+   Senha do painel e "Apagar configurações"
+
+Padrões de fábrica agora são os de USO REAL. Para testar na bancada, abra a página e
+clique em "Valores de teste" (e, numa sala a ~20 °C, use atenção 20,5 e perigo 21,5).
+
+
+PASSO A PASSO DO TESTE
+----------------------
+1) Carregue o código. Monitor Serial em 115200.
+   Esperado: "Aperte BOOT nos proximos 3 s..." com o LED piscando rápido.
+   Não aperte nada. Com uma cópia local que tenha Wi-Fi e token preenchidos (nunca versionada): conecta no Wi-Fi e chega no Telegram
+   "✅ Caixa de alerta ligada" com o endereço do painel e o da configuração.
+
+2) No celular (mesma rede), abra http://IP_DA_PLACA/config (ou pelo botão
+   "Configurações" no painel). Usuário admin, senha caixa1234.
+   Esperado: a página mostra "Conectada ao Wi-Fi", a rede, o IP e o sinal.
+
+3) Clique em "Valores de teste", troque a senha do painel (8+ caracteres) e salve.
+   Esperado: "Salvo!", a placa reinicia, volta ao Wi-Fi e o eventos.csv registra
+   "configuracao salva pela pagina (...)". Entre de novo na página com a senha nova.
+
+4) Teste de validação: digite uma senha de Wi-Fi com 3 caracteres e salve.
+   Esperado: "Não salvei. Corrija: Senha do Wi-Fi: de 8 a 63 caracteres", sem reiniciar.
+
+5) Modo configuração pelo botão: aperte EN e, enquanto o LED pisca rápido, aperte BOOT.
+   Esperado no Serial: "Rede de configuracao: CaixaAlerta-XXXX".
+   No celular, conecte nessa rede (senha do painel). A página deve abrir sozinha;
+   se não abrir, digite http://192.168.4.1/config.
+   Clique em "Procurar redes": aparecem as redes próximas.
+
+6) Wi-Fi errado: na rede de configuração, digite uma senha de Wi-Fi errada e salve.
+   Esperado: a placa reinicia, não conecta em 15 s e abre de novo a CaixaAlerta-XXXX.
+   Corrija a senha e salve: ela conecta e a CaixaAlerta some uns 30 s depois.
+
+7) Queda do roteador: com tudo funcionando, desligue o roteador do celular por 3 min.
+   Esperado: depois de 2 min aparece a CaixaAlerta-XXXX; o LED continua respondendo ao calor.
+   Ligue o roteador de novo: em até 60 s a placa reconecta e a CaixaAlerta some.
+
+8) Presença em segundos: coloque a janela de presença em 30 s, salve e passe a mão.
+   Esperado: "sem presenca (nenhum movimento em 30 s)" 30 s depois do último movimento.
+
+9) Restaurar: "Apagar configurações".
+   Esperado: volta aos padrões de fábrica. Com a cópia sem token, abre a CaixaAlerta-XXXX;
+   com a cópia local (com Wi-Fi e token preenchidos), volta a usar o Wi-Fi e o token escritos no código.
+
+
+SE FALHAR
+---------
+- A página pede senha toda hora: o navegador não guardou o login; use admin + senha do painel.
+- Esqueceu a senha do painel: carregue o código com "Erase All Flash Before Sketch Upload"
+  ligado (Ferramentas) uma vez; isso apaga a configuração e os registros.
+- A página não abre sozinha na CaixaAlerta: alguns celulares só abrem com os dados móveis
+  desligados; digite http://192.168.4.1/config.
+- "Procurar redes" demora: é normal levar uns 3 s; a rede de configuração pode piscar.
+- A placa não sai do modo configuração: ela entrou pelo botão (caso 4); salve ou aperte EN.
+
+
+REGISTRO
+--------
+Data: ___/___/2026
+[ ] 1 ligada no Telegram     [ ] 2 página abre com login   [ ] 3 salvar e reiniciar
+[ ] 4 validação recusa erro  [ ] 5 rede pelo BOOT          [ ] 6 Wi-Fi errado
+[ ] 7 queda do roteador      [ ] 8 presença em segundos    [ ] 9 apagar configurações
+Observações: ______________________________________________
+
+Resultado de 29/10/2026: os 9 passos aprovados (versões 11.0 a 11.2). A troca da senha do painel
+no passo 3 não foi registrada no log. Correções feitas durante o teste: 11.1 (travava no modo
+configuração pelo BOOT), 11.2 (reconexão atrapalhava a rede de configuração) e 11.3 (eventos de
+queda e volta do Wi-Fi no eventos.csv).
+Atenção: se o roteador for o próprio celular, ele não consegue entrar na CaixaAlerta com o roteador
+ligado; use um notebook ou desligue o roteador do celular só durante a configuração.
