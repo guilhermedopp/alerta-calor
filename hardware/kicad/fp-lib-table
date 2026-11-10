@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "alerta_calor")(type "KiCad")(uri "${KIPRJMOD}/alerta_calor.pretty")(options "")(descr "Footprints do projeto"))
+)

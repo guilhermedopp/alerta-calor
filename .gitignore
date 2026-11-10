@@ -23,3 +23,13 @@ build/
 *.bin
 .DS_Store
 Thumbs.db
+
+# KiCad: arquivos locais e temporários
+*.kicad_prl
+*.lck
+~*.lck
+.history/
+*-backups/
+fp-info-cache
+*.kicad_pcb-bak
+*.kicad_sch-bak

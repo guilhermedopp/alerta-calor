@@ -46,7 +46,7 @@ Com quase a mesma sensibilidade do limite fixo, a IA dá **77% menos alarmes fal
 | [`ia/`](ia/) | Geração das simulações JOS-3, treino, avaliação, verificação do C, dados e figuras |
 | [`assistente/`](assistente/) | Assistente do cuidador: esquema do banco, regras de segurança e perguntas de teste |
 | [`caixa_3d/`](caixa_3d/) | Caixa v4 para impressão 3D (STL) e imagens com medidas |
-| [`hardware/`](hardware/) | Mapa da protoboard e tutorial de montagem da bancada |
+| [`hardware/`](hardware/) | Placa de circuito no KiCad, mapa da protoboard e tutorial de montagem da bancada |
 | [`analise_maceio/`](analise_maceio/) | Calor x internações de idosos em Maceió (SIH/SUS + INMET, 2015–2024) |
 | [`docs/`](docs/) | Proposta e documento técnico da IA (PDF) |
 
