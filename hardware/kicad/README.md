@@ -21,7 +21,7 @@ Placa principal da caixa de alerta de calor, rev. 0.1, desenhada no KiCad 10.
 
 | Ref. | Peça | Observação |
 |---|---|---|
-| U1 | ESP32-C3 SuperMini | em soquete fêmea 2 × 8 (fileiras a 15,24 mm); USB-C na borda direita |
+| U1 | ESP32-C3 SuperMini | em soquete fêmea 2 × 8 (fileiras a 15,24 mm); USB-C na borda direita. Vista de cima: 5V, GND, 3V3, GPIO4…0 na fileira de baixo; GPIO5…21 na de cima |
 | R1, R3 | 220 Ω | LED vermelho e azul |
 | R2 | 56 Ω | LED verde (mais fraco, resistor menor) |
 | R4 | 1 kΩ | base do transistor |
@@ -41,7 +41,7 @@ R1–R4, Q1 e D1 ficam embaixo do ESP32, no vão do soquete. Na hora de soldar, 
 | J5 `BUZ` | +5V, − (coletor do Q1) | buzzer ativo 5 V |
 | J6 `BTN` | SIG, GND | botão de silenciar |
 
-O pino 1 de cada conector é o furo quadrado. A face de baixo da placa traz essa tabela impressa.
+O pino 1 de cada conector é o furo quadrado (fica embaixo em cada conector). A face de baixo da placa traz essa tabela impressa.
 
 ## Pinos do ESP32-C3
 
@@ -57,6 +57,10 @@ O pino 1 de cada conector é o furo quadrado. A face de baixo da placa traz essa
 ## Como abrir
 
 Abra `alerta_calor.kicad_pro` no KiCad 10. O símbolo e o footprint do ESP32-C3 SuperMini estão neste projeto (`alerta_calor.kicad_sym` e `alerta_calor.pretty/`), e as tabelas de bibliotecas já apontam para eles.
+
+## Histórico
+
+- 12/11/2026: a placa foi espelhada em Y. As fileiras do ESP32-C3 SuperMini estavam trocadas no footprint (conferido com a placa real). Trilhas, zonas e ligações são as mesmas, espelhadas; os conectores ficaram com o pino 1 embaixo.
 
 ## Pendências antes de fabricar
 
