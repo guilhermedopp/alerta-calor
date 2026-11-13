@@ -13,7 +13,7 @@ Placa principal da caixa de alerta de calor, rev. 0.1, desenhada no KiCad 10.
 |---|---|
 | Tamanho | 40 × 30 mm, 2 faces, 1,6 mm |
 | Borda livre | 1,5 mm em volta (presilhas da tampa da caixa v4b) |
-| Trilhas | 0,4 mm (sinais) e 0,8 mm (+5V, +3V3, GND), folga de 0,3 mm |
+| Trilhas | 0,2 mm (todas, para fazer na laser do IFAL), folga de 0,3 mm |
 | GND | plano de cobre nas duas faces |
 | Situação | roteada; DRC sem itens desconectados |
 
