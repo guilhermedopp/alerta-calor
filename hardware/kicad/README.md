@@ -23,7 +23,7 @@ Placa principal da caixa de alerta de calor, rev. 0.1, desenhada no KiCad 10.
 |---|---|---|
 | U1 | ESP32-C3 SuperMini | em soquete fêmea 2 × 8 (fileiras a 15,24 mm); USB-C na borda direita. Vista de cima: 5V, GND, 3V3, GPIO4…0 na fileira de baixo; GPIO5…21 na de cima |
 | R1, R3 | 220 Ω | LED vermelho e azul |
-| R2 | 56 Ω | LED verde (mais fraco, resistor menor) |
+| R2 | 47 Ω | LED verde (mais fraco, resistor menor; o projeto previa 56 Ω, que não veio no kit) |
 | R4 | 1 kΩ | base do transistor |
 | Q1 | BC337 (TO-92) | liga o buzzer |
 | D1 | 1N4148 | protege o transistor |
