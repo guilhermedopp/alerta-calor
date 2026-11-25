@@ -2,7 +2,7 @@
 
 Uma caixa de baixo custo (meta: menos de R$ 60), ligada na tomada do quarto, que estima como o calor daquele cômodo está afetando o corpo de idosos e avisa o cuidador antes de o risco virar emergência, mesmo sem internet.
 
-<p align="center"><img src="caixa_3d/imagens/aparencia_caixa_v4.png" width="320" alt="Caixa de alerta de calor, versão v4 (70 × 69 × 40 mm)"></p>
+<p align="center"><img src="caixa_3d/imagens/caixa_v5_frente.png" width="320" alt="Caixa de alerta de calor, versão v5 (70 × 69 × 40 mm)"></p>
 
 Projeto de Guilherme de Oliveira Pontes Pinto e Matheus Henrique Ferreira Pimentel (Sistemas de Informação, IFAL, Campus Maceió), com orientação do prof. Elvys Soares e coorientação do prof. Edison Camilo.
 
@@ -45,7 +45,7 @@ Com quase a mesma sensibilidade do limite fixo, a IA dá **77% menos alarmes fal
 | [`firmware/`](firmware/) | Firmware de bancada (ESP32 DevKit, Etapa 11), módulo da IA (`ia_embarcada.h`, `modelo_risco.h`) e testes de bancada |
 | [`ia/`](ia/) | Geração das simulações JOS-3, treino, avaliação, verificação do C, dados e figuras |
 | [`assistente/`](assistente/) | Assistente do cuidador: esquema do banco, regras de segurança e perguntas de teste |
-| [`caixa_3d/`](caixa_3d/) | Caixa v4 para impressão 3D (STL) e imagens com medidas |
+| [`caixa_3d/`](caixa_3d/) | Caixa v5 para impressão 3D em ABS (STL, scripts e instruções de impressão) |
 | [`hardware/`](hardware/) | Placa de circuito no KiCad, mapa da protoboard e tutorial de montagem da bancada |
 | [`analise_maceio/`](analise_maceio/) | Calor x internações de idosos em Maceió (SIH/SUS + INMET, 2015–2024) |
 | [`docs/`](docs/) | Proposta e documento técnico da IA (PDF) |
